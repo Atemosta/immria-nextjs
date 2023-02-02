@@ -1,5 +1,6 @@
 // React Imports 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image'
 import Link from 'next/link'
 
 // API Imports 
@@ -59,14 +60,30 @@ const WorldLayout = ({worldID}) => {
     <CssBaseline />
       <div>
         <br/>
-        <center><Link href="/"><Button variant="outlined">{"< Back to Hub"}</Button></Link></center>
-        { (world) &&
+        { (world) ?
         <div>
           <br/>
           <center><h1>{world.title}</h1></center>
           <br/>
-          <center><ButtonExternalURL url={`${WEBVR_URL[env]}/${world.type}/${WEBVR_INDEX}?${worldID}`} text="View Names in WebVR"/></center>
+          <center><Link href="/"><Button variant="outlined">{"< Back to Hub"}</Button></Link></center>
+          <center><ButtonExternalURL url={`${WEBVR_URL[env]}/${world.type}/${WEBVR_INDEX}?${worldID}`} text="View World in WebVR"/></center>
           <br/>
+        </div>
+        :
+        <div>
+          <center>
+            <h1>This world is missing!</h1>
+            <Link href="/"><Button variant="contained">{"< Back to Hub"}</Button></Link>
+            <br/>
+            <br/>
+            <Image
+              src="/assets/missing.jpeg"
+              alt="missing world"
+              width={400}
+              height={600}
+              priority
+            />
+          </center>
         </div>
         }
     </div>
