@@ -6,6 +6,7 @@ import Head from 'next/head'
 
 // Component Imports
 import Hub from '/components/Hub';
+import Navbar from '/components/Navbar';
 
 // Color Theme Settings 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -28,6 +29,7 @@ export default function Home() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <main>
+          <Navbar/>
           <Hub/>
         </main>
     </ThemeProvider>
