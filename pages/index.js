@@ -5,14 +5,11 @@ import Head from 'next/head'
 // const inter = Inter({ subsets: ['latin'] })
 
 // Component Imports
-import Hub from '@/components/Hub';
+import Hub from '/components/Hub';
 
-// Color Theme Mode 
+// Color Theme Settings 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
-
-// Color Theme Settings
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',

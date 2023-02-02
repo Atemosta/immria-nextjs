@@ -1,5 +1,6 @@
 // Import React Functions
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link'
 
 // Import Images
 import imgImmria from '../assets/monument-of-life.jpeg'
@@ -9,7 +10,7 @@ import imgFate from '../assets/fate.jpg'
 import imgNaruto from '../assets/naruto.jpg'
 
 // API Imports
-import getWorlds from '../api/getWorlds';
+import getWorlds from '../pages/api/getWorlds';
 
 // Local Component Imports
 import WorldCard from './WorldCard';
@@ -38,10 +39,7 @@ const Hub = ({address, setLocation, setWorldKey}) => {
       // Get List of Public Worlds
       try {
         let dbWorlds = await getWorlds("private")
-        const results = testWorlds.concat(dbWorlds);
-        console.log("--Results")
-        console.log(results)
-        setWorlds(results)
+        setWorlds(dbWorlds)
       } catch (error) {
         console.log("Error in Hub/useEffect.js (Getting Public Worlds)")
         console.error(error);
@@ -74,9 +72,12 @@ const Hub = ({address, setLocation, setWorldKey}) => {
       <center>
         <h1>🌎 Public Worlds</h1>
         <Grid container spacing={2}>
+          
           {worlds.map((world) => (
             <Grid item key={world.ID} xs={12} sm={6} md={4} lg={3}>
-              <WorldCard world={world} img={imgs[world.ID]} setLocation={setLocation} setWorldKey={setWorldKey}/>
+              <Link href={`/worlds/${world.ID}`}>
+                <WorldCard world={world}/>
+              </Link>
             </Grid>
           ))}
         </Grid>
